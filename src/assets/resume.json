@@ -1,0 +1,149 @@
+{
+  "basics": {
+    "name": "Loïc Colin",
+    "label": "Senior Front-End Engineer / Full Stack Engineer",
+    "image": "",
+    "email": "loic-col@hotmail.fr",
+    "url": "",
+    "summary": "",
+    "location": {
+      "city": "Berlin",
+      "countryCode": "DE",
+      "region": "Germany"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "LoicCol",
+        "url": "https://github.com/LoicCol"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Zenjob",
+      "position": "Senior Front-End Engineer / Full Stack Engineer",
+      "url": "https://www.zenjob.com/en/",
+      "startDate": "2021-11-01",
+      "summary": " Zenjob, based in Berlin, Germany, matches over 20,000 talents with 12,000 part-time jobs from over 1,000 companies every month. The platform empowers the workforce of tomorrow, enabling part-time jobbers to decide when, where, and how to work with just a few clicks.",
+      "highlights": [
+        "Led an initiaitve with 4 engineers to increase automation from 75% to 98% by developing and implementing a fully automated order management system. Resulted in streamlined processing, reduced manual intervention, and resource optimization.",
+        "Refactored the B2B application's front-end authentication system by migrating from Redux to React Context for improved robustness and maintainability.",
+        "Developed a user-friendly bulk order process that accelerated processing, benefiting customers with large orders and enhancing efficiency, 70% of orders are now created through this UI.",
+        "Designed and implemented a Talent Rating system to manage complex evaluation aspects effectively, ensuring accurate assessments.",
+        "Migrated end-to-end tests from TestCafe & Cypress to Playwright, reducing flaky failures by 30% and speeding up the Jenkins pipeline by 25%. Enhanced testing reliability and efficiency.",
+        "Built an internal panel application using React, replacing a VBA tool and equipping account managers with an intuitive interface for enhanced productivity."
+      ]
+    },
+    {
+      "name": "eLamp",
+      "position": "Front-End Engineer",
+      "url": "https://www.elamp.fr/en/",
+      "startDate": "2016-09-01",
+      "endDate": "2021-09-01",
+      "summary": "Involved in eLamp’s early stages as a student, we started from the founders’ couch. Despite challenges, we built a successful product, leading to eLamp’s acquisition by a larger group in 2023.",
+      "highlights": [
+        "Shaped a startup’s tech direction from inception, building a robust front-end tech stack with TypeScript, React, and GraphQL.",
+        "Developed complex user interfaces and data visualization tools with React and D3JS.",
+        "Created features for a user-friendly product, focusing on aesthetically pleasing designs and functional animations.",
+        "Ensured software quality through rigorous testing methodologies, maintaining high standards for our products and reducing bugs by 30%.",
+        "Improved site load time by 15% by implementing advanced caching techniques."
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Testing Javascript with Kent C.Dodds",
+      "date": "2019-03-01",
+      "issuer": "Kent C.Dodds",
+      "url": "https://www.testingjavascript.com/"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Catholic University of Lille",
+      "url": "https://www.univ-catholille.fr/en",
+      "area": "Computer Science Engineering and Innovation.",
+      "studyType": "Master",
+      "startDate": "2014-09-01",
+      "endDate": "2016-07-01",
+      "score": "2.1",
+      "courses": [
+        "Gained in-depth understanding of computer science principles and software design.",
+        "Learned to apply creative problem-solving in technological contexts.",
+        "Acquired skills in project management, including agile and scrum methodologies.",
+        "Applied theoretical knowledge to practical projects using specific programming languages or technologies.",
+        "Collaborated with diverse teams on different projects."
+      ]
+    },
+    {
+      "institution": "IUT of Lens",
+      "url": "http://www.iut-lens.univ-artois.fr/",
+      "area": "Computer Science.",
+      "studyType": "Bachelor",
+      "startDate": "2011-09-01",
+      "endDate": "2014-07-01",
+      "score": "2.1",
+      "courses": [
+        "Basics of computer science and software engineering.",
+        "Statistics and probability.",
+        "Mathematics."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Front-end Development",
+      "level": "Master",
+      "keywords": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Vite",
+        "Remix",
+        "GraphQL",
+        "Tailwind CSS",
+        "React Testing Library",
+        "Cypress",
+        "Playwright",
+        "Nock",
+        "Vitest"
+      ]
+    },
+    {
+      "name": "Back-end Development",
+      "level": "Intermediate",
+      "keywords": ["Node.js", "Express", "GraphQL", "Java", "Spring", "Kafka"]
+    },
+    {
+      "name": "DevOps",
+      "level": "Intermediate",
+      "keywords": [
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "Terraform",
+        "Jenkins",
+        "GitHub Pages",
+        "GitHub Actions"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "French",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    }
+  ],
+  "interests": [
+    { "name": "Running & sports" },
+    { "name": "Meditation" },
+    { "name": "Electronic music - Production" }
+  ]
+}

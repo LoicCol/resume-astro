@@ -1,0 +1,10 @@
+---
+import resume from "../assets/resume.json";
+import Basics from "../components/Basics.astro";
+import Skills from "../components/Skills.astro";
+---
+
+<div class="scrollbar w-full border-gray-400 sm:w-1/5 sm:overflow-auto sm:pr-8">
+  <Basics basics={resume.basics} isDark={true} toggleDark={() => null} />
+  <Skills skills={resume.skills} />
+</div>

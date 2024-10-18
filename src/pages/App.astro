@@ -1,0 +1,35 @@
+---
+import resume from "../assets/resume.json";
+import Basics from "../components/Basics.astro";
+import Education from "../components/Education.astro";
+import Experiences from "../components/Experiences.astro";
+import Skills from "../components/Skills.astro";
+import Interests from "../components/Interests.astro";
+import Menu from "../components/Menu.astro";
+---
+
+<div class="h-screen relative p-1 overflow-hidden">
+  <span
+    class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"
+  ></span>
+  <div
+    class="relative z-10 flex w-full h-full flex-col sm:flex-row bg-gradient-to-br p-8 from-blue-100 via-green-50 to-red-100"
+  >
+    <div
+      class="scrollbar mt-10 flex w-full flex-col border-gray-400 pb-10 sm:mt-0 sm:w-3/5 sm:overflow-auto sm:border-l sm:px-10"
+    >
+      <div id="experiences" class="mb-10">
+        <Experiences experiences={resume.work} />
+      </div>
+      <hr class="mb-20 w-1/2 self-center border-t border-gray-400" />
+      <div id="educations" class="mb-10">
+        <Education educations={resume.education} />
+      </div>
+      <hr class="mb-20 w-1/2 self-center border-t border-gray-400" />
+      <div id="interests" class="mb-10">
+        <Interests interests={resume.interests} />
+      </div>
+    </div>
+    <Menu isDark={true} toggleDark={() => null} />
+  </div>
+</div>
