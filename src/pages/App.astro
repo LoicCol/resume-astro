@@ -1,11 +1,8 @@
 ---
 import resume from "../assets/resume.json";
-import Basics from "../components/Basics.astro";
 import Education from "../components/Education.astro";
 import Experiences from "../components/Experiences.astro";
-import Skills from "../components/Skills.astro";
 import Interests from "../components/Interests.astro";
-import Menu from "../components/Menu.astro";
 ---
 
 <div class="h-screen relative p-1 overflow-hidden">
@@ -30,6 +27,5 @@ import Menu from "../components/Menu.astro";
         <Interests interests={resume.interests} />
       </div>
     </div>
-    <Menu isDark={true} toggleDark={() => null} />
   </div>
 </div>

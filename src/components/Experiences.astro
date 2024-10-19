@@ -1,12 +1,9 @@
 ---
 import type { ExperienceType } from "../types.ts";
 import { formattedPeriod } from "../utils/formattedPeriod.ts";
+import resume from "../assets/resume.json";
 
-interface Props {
-  experiences: ExperienceType[];
-}
-
-const { experiences } = Astro.props;
+const { work: experiences }: { work: ExperienceType[] } = resume;
 ---
 
 <div>

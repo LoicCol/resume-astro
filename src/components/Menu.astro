@@ -1,18 +1,9 @@
 ---
-import { AnimatedIcon } from "../cra-project/components/AnimatedIcon.tsx";
 
-interface Props {
-  isDark: boolean;
-  toggleDark: () => void;
-}
-
-const { isDark, toggleDark } = Astro.props;
 ---
 
-<div
-  class="hidden flex-col justify-center border-gray-400 pl-8 sm:flex sm:w-1/5"
->
-  <a href="#experiences" class="mb-8 w-min">
+<div class="flex-col justify-center pl-8 flex">
+  <a href="/experiences" class="mb-8 w-min">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"
@@ -23,13 +14,13 @@ const { isDark, toggleDark } = Astro.props;
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="test-sm text-gray-900 duration-75 dark:text-gray-300"
+      class="test-sm duration-75"
     >
       <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
       <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
     </svg>
   </a>
-  <a href="#educations" class="mb-8 w-min">
+  <a href="/educations" class="mb-8 w-min">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"
@@ -40,7 +31,7 @@ const { isDark, toggleDark } = Astro.props;
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="test-sm text-gray-900 duration-75 dark:text-gray-300"
+      class="test-sm duration-75"
     >
       <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
       <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
@@ -57,15 +48,11 @@ const { isDark, toggleDark } = Astro.props;
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="test-sm text-gray-900 duration-75 dark:text-gray-300"
+      class="test-sm duration-75"
     >
       <path
         d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
       ></path>
     </svg>
   </a>
-  <hr class="mb-6 w-5 border-t border-gray-400" />
-  <div class="hidden sm:block">
-    <AnimatedIcon client:load isDark={isDark} toggleDark={toggleDark} />
-  </div>
 </div>

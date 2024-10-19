@@ -1,16 +1,10 @@
 ---
-import App from "./App.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Basics from "@/components/Basics.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body class="h-screen">
-    <App />
-  </body>
-</html>
+<BaseLayout>
+  <astro:element transition:name="hero" class="h-4/6 w-4/6">
+    <Basics />
+  </astro:element>
+</BaseLayout>

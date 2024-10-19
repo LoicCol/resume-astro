@@ -8,14 +8,14 @@ interface Props {
 const { skills } = Astro.props;
 ---
 
-<div class="sm:text-end">
+<div class="grid grid-cols-3 gap-5">
   {
     skills.map((skill) => (
       <div class="mb-10">
-        <h2 class="text-md mb-2 font-bold text-gray-700 dark:text-gray-400">
-          {skill.name}
-        </h2>
-        <p class="text-sm dark:text-white">{skill.keywords.join(", ")}</p>
+        <h2 class="text-md mb-2 font-bold ">{skill.name}</h2>
+        {skill.keywords.map((keyword) => (
+          <p class="text-sm dark:text-white">{keyword}</p>
+        ))}
       </div>
     ))
   }

@@ -1,39 +1,6 @@
 ---
-import type { BasicsType } from "../types.ts";
-import { AnimatedIcon } from "../cra-project/components/AnimatedIcon.tsx";
-
-interface Props {
-  basics: BasicsType;
-  isDark: boolean;
-  toggleDark: () => void;
-}
-
-const { basics, isDark, toggleDark } = Astro.props;
+import Skills from "./Skills.astro";
+import resume from "../assets/resume.json";
 ---
 
-<div class="mb-10 flex flex-col sm:items-end">
-  <img
-    src="https://avatars.githubusercontent.com/u/32926059?v=4"
-    alt="profile"
-    class="mb-20 w-1/2 self-center rounded-full sm:mb-10 sm:self-end"
-    loading="lazy"
-  />
-  <div class="mb-6 flex items-center justify-between">
-    <h1 class="z-20 text-3xl font-bold text-blue-700 dark:text-blue-400">
-      Loïc Colin
-    </h1>
-    <div class="sm:w-0 sm:overflow-hidden">
-      <AnimatedIcon client:load isDark={isDark} toggleDark={toggleDark} />
-    </div>
-  </div>
-  <p class="text-sm dark:text-white">{basics.label}</p>
-  <p class="text-sm dark:text-white">{basics.email}</p>
-  <p class="text-sm dark:text-white">{basics.location.city}</p>
-  <a href={basics.profiles[0].url} class="w-min pt-2 text-sm" target="_blank">
-    <!-- GitHub icon can be added here if needed -->
-  </a>
-</div>
-
-<script>
-  // Any client-side JavaScript can be added here if needed
-</script>
+<Skills skills={resume.skills} />
