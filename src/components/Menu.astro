@@ -4,10 +4,30 @@ import { House, BriefcaseBusiness, BookOpenCheck, Heart } from "lucide-react";
 const currentPath = Astro.url.pathname;
 
 const links = [
-  { href: "/", icon: House },
-  { href: "/experiences", icon: BriefcaseBusiness },
-  { href: "/education", icon: BookOpenCheck },
-  { href: "/interests", icon: Heart },
+  {
+    href: "/",
+    icon: House,
+    color:
+      "bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-500 animate-pulse duration-2000 via-background blur-sm",
+  },
+  {
+    href: "/experiences",
+    icon: BriefcaseBusiness,
+    color:
+      "bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500 via-background animate-pulse duration-2000 blur-sm ",
+  },
+  {
+    href: "/education",
+    icon: BookOpenCheck,
+    color:
+      "bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500 via-background animate-pulse duration-2000 blur-sm ",
+  },
+  {
+    href: "/interests",
+    icon: Heart,
+    color:
+      "bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500 via-background animate-pulse duration-2000 blur-sm",
+  },
 ];
 ---
 
@@ -16,19 +36,22 @@ const links = [
     links.map((link) => (
       <a
         href={link.href}
-        class="mb-8 w-min rounded-full p-1 relative"
+        class="mb-8 w-min rounded-full p-2 relative"
         transition:name={link.href}
       >
         {currentPath === link.href && (
           <div
-            class="absolute inset-0 bg-white rounded-full"
+            class="absolute inset-0  border-primary/60 rounded-full overflow-hidden"
             transition:name={`active-page`}
-          />
+          >
+            <div
+              class={`absolute inset-0 ${link.color} rounded-full overflow-hidden`}
+            />
+          </div>
         )}
         <link.icon
-          className={`h-5 w-5 relative z-10 ${
-            currentPath === link.href ? "text-background" : "text-white"
-          }`}
+          className={`h-5 w-5 relative z-10 text-primary `}
+          strokeWidth={1}
         />
       </a>
     ))
