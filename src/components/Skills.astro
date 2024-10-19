@@ -6,13 +6,13 @@ interface Props {
 }
 
 const { skills } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
-<div class="max-w-[800px]">
   {
     skills.map((skill) => (
       <h2 class="text-md mb-3 font-bold" transition:name={skill.name}>{skill.name}</h2>
-      <div class="mb-10 flex items-center flex-wrap gap-y-3 gap-x-2">
+      <div class={`mb-10 flex items-center flex-wrap gap-y-3 gap-x-2 ${currentPath !== '/' ? 'justify-end' : ''}`}>
         {skill.keywords.map((keyword, index) => (
           <>
             <p class="text-sm dark:text-white" transition:name={`${skill.name}-${keyword}`}>{keyword}</p>
@@ -27,4 +27,3 @@ const { skills } = Astro.props;
       </div>
     ))
   }
-</div>

@@ -12,7 +12,7 @@ type BorderTrailProps = {
 };
 
 export function BorderTrail({
-  //   className,
+  className,
   size = 60,
   transition,
   delay,
@@ -25,68 +25,32 @@ export function BorderTrail({
     ease: "linear",
   };
 
-  const className = `bg-gradient-to-l from-border via-yellow-500 to-border`;
-  const className2 = `bg-gradient-to-l from-border via-red-500 to-border`;
-  const className3 = `bg-gradient-to-l from-border via-purple-500 to-border`;
-
   return (
-    <>
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]">
-        <motion.div
-          className={cn("absolute aspect-square bg-zinc-500", className)}
-          style={{
-            width: size,
-            offsetPath: `rect(0 auto auto 0 round ${size}px)`,
-            ...style,
-          }}
-          animate={{
-            offsetDistance: ["0%", "100%"],
-            opacity: [1, 0, 0, 1, 0, 0, 1],
-          }}
-          transition={{
-            ...(transition ?? BASE_TRANSITION),
-          }}
-          onAnimationComplete={onAnimationComplete}
-        />
-      </div>
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]">
-        <motion.div
-          className={cn("absolute aspect-square bg-zinc-500", className2)}
-          style={{
-            width: size,
-            offsetPath: `rect(0 auto auto 0 round ${size}px)`,
-            ...style,
-          }}
-          animate={{
-            offsetDistance: ["0%", "100%"],
-            opacity: [0, 1, 0, 0, 1, 0, 0],
-          }}
-          transition={{
-            ...(transition ?? BASE_TRANSITION),
-            delay: delay,
-          }}
-          onAnimationComplete={onAnimationComplete}
-        />
-      </div>
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]">
-        <motion.div
-          className={cn("absolute aspect-square bg-zinc-500", className3)}
-          style={{
-            width: size,
-            offsetPath: `rect(0 auto auto 0 round ${size}px)`,
-            ...style,
-          }}
-          animate={{
-            offsetDistance: ["0%", "100%"],
-            opacity: [0, 0, 1, 0, 0, 1, 0],
-          }}
-          transition={{
-            ...(transition ?? BASE_TRANSITION),
-            delay: delay,
-          }}
-          onAnimationComplete={onAnimationComplete}
-        />
-      </div>
-    </>
+    <div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]">
+      <motion.div
+        className={cn(
+          "absolute aspect-square bg-zinc-500 bg-gradient-to-l from-border via-yellow-500 to-border",
+          className,
+        )}
+        style={{
+          width: size,
+          offsetPath: `rect(0 auto auto 0 round ${size}px)`,
+          ...style,
+        }}
+        animate={{
+          offsetDistance: ["0%", "100%"],
+          background: [
+            "linear-gradient(to left, #27272a, #16a34a, #27272a)",
+            "linear-gradient(to left, #27272a, #ef4444, #27272a)",
+            "linear-gradient(to left, #27272a, #a855f7, #27272a)",
+            "linear-gradient(to left, #27272a, #16a34a, #27272a)",
+          ],
+        }}
+        transition={{
+          ...(transition ?? BASE_TRANSITION),
+        }}
+        onAnimationComplete={onAnimationComplete}
+      />
+    </div>
   );
 }

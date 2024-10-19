@@ -10,7 +10,7 @@ const { basics } = resume;
 <BaseLayout>
   <Card className="overflow-hidden max-h-[80vh] max-w-[80vw] rounded-none">
     <CardHeader>
-      <CardTitle className="flex flex-row ">
+      <CardTitle className="flex flex-row justify-between p-6 text-right">
         <img
           src={basics.picture}
           alt="profile"
@@ -36,7 +36,7 @@ const { basics } = resume;
           </div>
         </div>
       </CardTitle>
-      <CardContent className="pt-16">
+      <CardContent className="pt-16 max-w-[800px]">
         <Basics />
       </CardContent>
     </CardHeader>

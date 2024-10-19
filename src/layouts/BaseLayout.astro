@@ -3,6 +3,9 @@ import Menu from "../components/Menu.astro";
 import "../styles/globals.css";
 import { ViewTransitions } from "astro:transitions";
 import { BorderTrail } from "../components/ui/border-trail";
+
+const currentPath = Astro.url.pathname;
+const borderTrailSize = currentPath === "/interests" ? 200 : 500;
 ---
 
 <html lang="en">
@@ -14,15 +17,26 @@ import { BorderTrail } from "../components/ui/border-trail";
     <title>Astro</title>
     <ViewTransitions />
   </head>
-  <body class="h-screen bg-background" transition:name="hero">
-    <div class="flex justify-center items-center h-screen">
-      <div class="relative overflow-hidden flex" transition:name="card">
-        <BorderTrail size={500} client:idle />
+  <body class="h-screen bg-background cursor-none" transition:name="hero">
+    <div
+      class="md:flex-row flex flex-col md:justify-center justify-between items-center h-screen"
+    >
+      <div
+        class="relative overflow-hidden border border-transparent"
+        transition:name="card"
+      >
         <slot />
+        <BorderTrail size={borderTrailSize} client:load />
       </div>
       <Menu isDark={true} toggleDark={() => null} />
     </div>
-    <!-- <div id="move" transition:persist transition:name="move"></div> -->
+    <div
+      id="move"
+      class="hidden md:block"
+      transition:persist
+      transition:name="move"
+    >
+    </div>
   </body>
 </html>
 
