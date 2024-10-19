@@ -9,9 +9,11 @@ const { basics, skills } = resume;
 ---
 
 <BaseLayout>
-  <Card className="overflow-auto h-screen max-w-[60vw]">
-    <CardHeader className="flex flex-row justify-between">
-      <CardTitle className="flex ">
+  <Card
+    className="overflow-hidden h-screen max-w-[80vw] max-h-[90vh] rounded-none flex flex-col"
+  >
+    <CardHeader className="flex flex-col md:flex-row justify-between gap-4">
+      <CardTitle className="flex md:flex-col xl:flex-row gap-2">
         <img
           src={basics.picture}
           alt="profile"
@@ -41,7 +43,7 @@ const { basics, skills } = resume;
         <Skills skills={skills} />
       </div>
     </CardHeader>
-    <CardContent>
+    <CardContent className="overflow-auto">
       <ExperiencesComponent />
     </CardContent>
   </Card>

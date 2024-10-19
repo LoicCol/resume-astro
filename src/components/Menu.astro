@@ -1,16 +1,36 @@
 ---
 import { House, BriefcaseBusiness, BookOpenCheck, Heart } from "lucide-react";
+
+const currentPath = Astro.url.pathname;
+
+const links = [
+  { href: "/", icon: House },
+  { href: "/experiences", icon: BriefcaseBusiness },
+  { href: "/educations", icon: BookOpenCheck },
+  { href: "#interests", icon: Heart },
+];
 ---
 
-<div class="flex-col justify-center pl-8 flex" transition:name="menu">
-  <a href="/" class="mb-8 w-min"> <House /></a>
-  <a href="/experiences" class="mb-8 w-min">
-    <BriefcaseBusiness />
-  </a>
-  <a href="/educations" class="mb-8 w-min">
-    <BookOpenCheck />
-  </a>
-  <a href="#interests" class="mb-8 w-min">
-    <Heart />
-  </a>
-</div>
+<nav class="flex-col justify-center pl-8 flex" transition:name="menu">
+  {
+    links.map((link) => (
+      <a
+        href={link.href}
+        class="mb-8 w-min rounded-full p-1 relative"
+        transition:name={link.href}
+      >
+        {currentPath === link.href && (
+          <div
+            class="absolute inset-0 bg-white rounded-full"
+            transition:name={`active-page`}
+          />
+        )}
+        <link.icon
+          className={`h-5 w-5 relative z-10 ${
+            currentPath === link.href ? "text-background" : "text-white"
+          }`}
+        />
+      </a>
+    ))
+  }
+</nav>

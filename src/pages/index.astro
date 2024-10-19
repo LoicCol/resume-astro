@@ -8,18 +8,18 @@ const { basics } = resume;
 ---
 
 <BaseLayout>
-  <Card className="overflow-hidden max-h-[80vh] max-w-[80vw]">
+  <Card className="overflow-hidden max-h-[80vh] max-w-[80vw] rounded-none">
     <CardHeader>
-      <CardTitle className="flex flex-row">
+      <CardTitle className="flex flex-row ">
         <img
           src={basics.picture}
           alt="profile"
-          class="w-2/12 rounded-full mr-10"
+          class="h-24 w-24 rounded-full mr-10"
           loading="lazy"
           transition:name="image"
         />
         <div class="flex flex-col" transition:name="title">
-          <h1 class="text-2xl font-bold text-primary mb-4">
+          <h1 class="text-2xl font-bold mb-2">
             {basics.name}
           </h1>
           <div>
@@ -36,9 +36,9 @@ const { basics } = resume;
           </div>
         </div>
       </CardTitle>
+      <CardContent className="pt-16">
+        <Basics />
+      </CardContent>
     </CardHeader>
-    <CardContent>
-      <Basics />
-    </CardContent>
   </Card>
 </BaseLayout>

@@ -2,24 +2,22 @@
 import type { ExperienceType } from "../types.ts";
 import { formattedPeriod } from "../utils/formattedPeriod.ts";
 import resume from "../assets/resume.json";
-
+import { Separator } from "./ui/separator.tsx";
 const { work: experiences }: { work: ExperienceType[] } = resume;
 ---
 
 <div>
-  <h2 class="mb-8 text-2xl font-bold text-gray-700 dark:text-white">
-    Experiences
-  </h2>
+  <h2 class="mb-8 text-2xl font-bold">Experiences</h2>
   {
     experiences.map((experience) => (
       <div class="mb-10 border-gray-400 pb-6">
-        <div class="items-center justify-between pb-6 sm:flex">
-          <p class="text-xl text-blue-700 dark:text-blue-400">
+        <div class=" items-center justify-between pb-2 sm:flex ">
+          <p class="text-xl">
             {experience.position},{" "}
             <a
               href={experience.url}
               target="_blank"
-              class="text-xl font-semibold text-blue-700 underline dark:text-blue-400"
+              class="text-xl font-bold underline"
             >
               {experience.name}
             </a>
@@ -31,6 +29,7 @@ const { work: experiences }: { work: ExperienceType[] } = resume;
             })}
           </p>
         </div>
+        <Separator className="my-4 bg-gradient-to-r from-background via-gray-700/50 to-background" />
         <p class="text-sm italic dark:text-white">{experience.summary}</p>
         <ul class="list-disc pt-6 sm:px-16">
           {experience.highlights.map((highlight) => (

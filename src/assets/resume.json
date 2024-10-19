@@ -102,6 +102,7 @@
         "TypeScript",
         "React",
         "Vite",
+        "Next.js",
         "Remix",
         "GraphQL",
         "Tailwind CSS",
@@ -109,13 +110,23 @@
         "Cypress",
         "Playwright",
         "Nock",
-        "Vitest"
+        "Vitest",
+        "Astro"
       ]
     },
     {
       "name": "Back-end Development",
       "level": "Intermediate",
-      "keywords": ["Node.js", "Express", "GraphQL", "Java", "Spring", "Kafka"]
+      "keywords": [
+        "Node.js",
+        "Express",
+        "GraphQL",
+        "Java",
+        "Spring",
+        "Kafka",
+        "Drizzle",
+        "PostgreSQL"
+      ]
     },
     {
       "name": "DevOps",
@@ -127,7 +138,8 @@
         "Terraform",
         "Jenkins",
         "GitHub Pages",
-        "GitHub Actions"
+        "GitHub Actions",
+        "Vercel"
       ]
     }
   ],

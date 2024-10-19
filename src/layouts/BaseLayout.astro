@@ -1,30 +1,8 @@
 ---
 import Menu from "../components/Menu.astro";
 import "../styles/globals.css";
-import type { BasicsType } from "../types.ts";
-import resume from "../assets/resume.json";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ViewTransitions, fade } from "astro:transitions";
-const { basics } = resume;
-
-const anim = {
-  old: {
-    name: "bump",
-    duration: "0.5s",
-    easing: "ease-in",
-    direction: "reverse",
-  },
-  new: {
-    name: "bump",
-    duration: "0.5s",
-    easing: "ease-in-out",
-  },
-};
-
-const customTransition = {
-  forwards: anim,
-  backwards: anim,
-};
+import { ViewTransitions } from "astro:transitions";
+import { BorderTrail } from "../components/ui/border-trail";
 ---
 
 <html lang="en">
@@ -38,10 +16,47 @@ const customTransition = {
   </head>
   <body class="h-screen bg-background" transition:name="hero">
     <div class="flex justify-center items-center h-screen">
-      <div transition:name="card">
+      <div class="relative overflow-hidden flex" transition:name="card">
+        <BorderTrail size={500} client:idle />
         <slot />
       </div>
       <Menu isDark={true} toggleDark={() => null} />
     </div>
+    <div id="move" transition:persist transition:name="move"></div>
   </body>
 </html>
+
+<script is:inline>
+  const move = document.getElementById("move");
+
+  document.addEventListener("astro:page-load", () => {
+    document.body.onpointermove = (event) => {
+      const { clientX, clientY } = event;
+
+      move.animate(
+        {
+          left: `${clientX}px`,
+          top: `${clientY}px`,
+        },
+        { duration: 600, fill: "forwards" },
+      );
+    };
+  });
+</script>
+
+<style is:global>
+  #move {
+    /* opacity: 0.5; */
+    height: 30px;
+    aspect-ratio: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    mix-blend-mode: difference;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+</style>
