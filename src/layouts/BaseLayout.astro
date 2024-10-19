@@ -36,40 +36,11 @@ const customTransition = {
     <title>Astro</title>
     <ViewTransitions />
   </head>
-  <body class="h-screen bg-background">
+  <body class="h-screen bg-background" transition:name="hero">
     <div class="flex justify-center items-center h-screen">
-      <Card className="overflow-hidden max-h-[80vh] max-w-[80vw]">
-        <CardHeader>
-          <CardTitle className="flex flex-row">
-            <img
-              src={basics.picture}
-              alt="profile"
-              class="w-2/12 rounded-full mr-10"
-              loading="lazy"
-            />
-            <div class="flex flex-col">
-              <h1 class="text-2xl font-bold text-primary mb-4">
-                {basics.name}
-              </h1>
-              <div>
-                <p class="text-sm dark:text-white">{basics.label}</p>
-                <p class="text-sm dark:text-white">{basics.email}</p>
-                <p class="text-sm dark:text-white">{basics.location.city}</p>
-                <a
-                  href={basics.profiles[0].url}
-                  class="w-min pt-2 text-sm"
-                  target="_blank"
-                >
-                  <!-- GitHub icon can be added here if needed -->
-                </a>
-              </div>
-            </div>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <slot />
-        </CardContent>
-      </Card>
+      <div transition:name="card">
+        <slot />
+      </div>
       <Menu isDark={true} toggleDark={() => null} />
     </div>
   </body>

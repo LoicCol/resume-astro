@@ -1,6 +1,6 @@
 ---
 import type { SkillType } from "../types.ts";
-
+import { Separator } from "@/components/ui/separator";
 interface Props {
   skills: SkillType[];
 }
@@ -8,13 +8,18 @@ interface Props {
 const { skills } = Astro.props;
 ---
 
-<div class="grid grid-cols-3 gap-5">
+<div class="max-w-[800px]">
   {
     skills.map((skill) => (
-      <div class="mb-10">
-        <h2 class="text-md mb-2 font-bold ">{skill.name}</h2>
-        {skill.keywords.map((keyword) => (
-          <p class="text-sm dark:text-white">{keyword}</p>
+      <h2 class="text-md mb-2 font-bold" transition:name={skill.name}>{skill.name}</h2>
+      <div class="mb-10 flex items-center flex-wrap gap-y-3 gap-x-2">
+        {skill.keywords.map((keyword, index) => (
+          <>
+            <p class="text-sm dark:text-white" transition:name={`${skill.name}-${keyword}`}>{keyword}</p>
+            {index !== skill.keywords.length - 1 && (
+              <Separator className="h-4" orientation="vertical" />
+            )}
+          </>
         ))}
       </div>
     ))

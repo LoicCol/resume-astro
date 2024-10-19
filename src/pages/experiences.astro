@@ -1,10 +1,48 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ExperiencesComponent from "@/components/Experiences.astro";
+import Skills from "@/components/Skills.astro";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import resume from "../assets/resume.json";
+
+const { basics, skills } = resume;
 ---
 
 <BaseLayout>
-  <astro:element transition:name="hero" class="h-5/6 w-5/6">
-    <ExperiencesComponent />
-  </astro:element>
+  <Card className="overflow-auto h-screen max-w-[60vw]">
+    <CardHeader className="flex flex-row justify-between">
+      <CardTitle className="flex ">
+        <img
+          src={basics.picture}
+          alt="profile"
+          class="rounded-full mr-10 h-24 w-24"
+          loading="lazy"
+          transition:name="image"
+        />
+        <div class="flex flex-col" transition:name="title">
+          <h1 class="text-2xl font-bold text-primary mb-4">
+            {basics.name}
+          </h1>
+          <div>
+            <p class="text-sm dark:text-white">{basics.label}</p>
+            <p class="text-sm dark:text-white">{basics.email}</p>
+            <p class="text-sm dark:text-white">{basics.location.city}</p>
+            <a
+              href={basics.profiles[0].url}
+              class="w-min pt-2 text-sm"
+              target="_blank"
+            >
+              <!-- GitHub icon can be added here if needed -->
+            </a>
+          </div>
+        </div>
+      </CardTitle>
+      <div class="max-w-[600px]">
+        <Skills skills={skills} />
+      </div>
+    </CardHeader>
+    <CardContent>
+      <ExperiencesComponent />
+    </CardContent>
+  </Card>
 </BaseLayout>
