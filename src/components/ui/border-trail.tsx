@@ -1,7 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion, useTime, useTransform, type Transition } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, type Transition } from "framer-motion";
 
 type BorderTrailProps = {
   className?: string;

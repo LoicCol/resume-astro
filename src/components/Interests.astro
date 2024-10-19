@@ -1,21 +1,15 @@
 ---
-interface Props {
-  interests: {
-    name: string;
-  }[];
-}
+import resume from "../assets/resume.json";
 
-const { interests } = Astro.props;
+const { interests } = resume;
 ---
 
 <div>
-  <h2 class="mb-8 text-2xl font-bold text-gray-700 dark:text-white">
-    Interests
-  </h2>
-  <ul class="mt-4 list-inside list-disc sm:px-8">
+  <h2 class="mb-4 text-2xl font-bold">Interests</h2>
+  <ul class="mt-4 list-inside list-disc">
     {
       interests.map((interest) => (
-        <li class="mt-2 text-sm dark:text-white">{interest.name}</li>
+        <li class="text-sm dark:text-white">{interest.name}</li>
       ))
     }
   </ul>

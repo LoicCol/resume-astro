@@ -1,12 +1,9 @@
 ---
 import type { EducationType } from "../types.ts";
 import { formattedPeriod } from "../utils/formattedPeriod.ts";
+import resume from "../assets/resume.json";
 
-interface Props {
-  educations: EducationType[];
-}
-
-const { educations } = Astro.props;
+const { education } = resume;
 ---
 
 <div>
@@ -14,29 +11,29 @@ const { educations } = Astro.props;
     Education
   </h2>
   {
-    educations.map((education, index) => (
+    education.map((educ, index) => (
       <div class="pb-12">
         <div class="items-center justify-between pb-6 sm:flex">
           <p class="text-xl text-blue-700 dark:text-blue-400">
-            {education.studyType},{" "}
+            {educ.studyType},{" "}
             <a
-              href={education.url}
+              href={educ.url}
               target="_blank"
               class="text-xl font-semibold text-blue-700 underline dark:text-blue-400"
             >
-              {education.institution}
+              {educ.institution}
             </a>
           </p>
           <p class="justify-self-end text-sm dark:text-white">
             {formattedPeriod({
-              startDate: education.startDate,
-              endDate: education.endDate,
+              startDate: educ.startDate,
+              endDate: educ.endDate,
             })}
           </p>
         </div>
-        <p class="text-sm italic dark:text-white">{education.area}</p>
+        <p class="text-sm italic dark:text-white">{educ.area}</p>
         <ul class="list-disc pt-8 sm:pl-16">
-          {education.courses.map((course) => (
+          {educ.courses.map((course) => (
             <li class="pt-2 text-sm dark:text-white">{course}</li>
           ))}
         </ul>
