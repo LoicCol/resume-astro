@@ -41,12 +41,10 @@ const links = [
       >
         {currentPath === link.href && (
           <div
-            class="absolute inset-0  border-primary/60 rounded-full overflow-hidden"
+            class="absolute inset-0  border-primary/60 rounded-full "
             transition:name={`active-page`}
           >
-            <div
-              class={`absolute inset-0 ${link.color} rounded-full overflow-hidden`}
-            />
+            <div class={`absolute inset-1 ${link.color} rounded-full `} />
           </div>
         )}
         <link.icon
