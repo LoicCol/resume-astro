@@ -4,6 +4,7 @@ import { formattedPeriod } from "@/utils/formattedPeriod.ts";
 import resume from "@/assets/resume.json";
 import { Separator } from "@/components/ui/separator.tsx";
 import BaseLayoutWithSkills from "@/layouts/BaseLayoutWithSkills.astro";
+import { MinusIcon } from "lucide-react";
 
 export function getStaticPaths() {
   const { work: experiences }: { work: ExperienceType[] } = resume;
@@ -23,16 +24,24 @@ const { experience } = Astro.props;
     transition:name={`experience-${experience.name.toLowerCase()}`}
   >
     <div class="items-center justify-between sm:flex">
-      <p class="text-xl">
-        {experience.position},{" "}
+      <div class="inline-flex items-center">
         <a
-          href={experience.url}
-          target="_blank"
-          class="text-xl font-bold underline"
+          href={`/experiences`}
+          class="p-1 text-background bg-foreground rounded-full mr-4"
         >
-          {experience.name}
+          <MinusIcon className="w-4 h-4" />
         </a>
-      </p>
+        <p class="text-xl">
+          {experience.position},
+          <a
+            href={experience.url}
+            target="_blank"
+            class="text-xl font-bold underline"
+          >
+            {experience.name}
+          </a>
+        </p>
+      </div>
       <p class="justify-self-end text-sm dark:text-white">
         {
           formattedPeriod({

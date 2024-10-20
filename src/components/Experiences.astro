@@ -3,6 +3,7 @@ import type { ExperienceType } from "../types.ts";
 import { formattedPeriod } from "../utils/formattedPeriod.ts";
 import resume from "../assets/resume.json";
 import { Separator } from "./ui/separator.tsx";
+import { PlusIcon } from "lucide-react";
 const { work: experiences }: { work: ExperienceType[] } = resume;
 ---
 
@@ -10,20 +11,28 @@ const { work: experiences }: { work: ExperienceType[] } = resume;
 {
   experiences.map((experience) => (
     <div
-      class="mb-10 border-gray-400 pb-4"
+      class="mb-10 border-gray-400 pb-4 flex flex-col"
       transition:name={`experience-${experience.name.toLowerCase()}`}
     >
       <div class=" items-center justify-between sm:flex">
-        <p class="text-xl">
-          {experience.position},
+        <div class="inline-flex items-center">
           <a
-            href={experience.url}
-            target="_blank"
-            class="text-xl font-bold underline"
+            href={`/experiences/${experience.name.toLowerCase()}`}
+            class="p-1 text-background bg-foreground rounded-full mr-4 animate-pulse"
           >
-            {experience.name}
+            <PlusIcon className="w-4 h-4" />
           </a>
-        </p>
+          <p class="text-xl">
+            {experience.position},
+            <a
+              href={experience.url}
+              target="_blank"
+              class="text-xl font-bold underline"
+            >
+              {experience.name}
+            </a>
+          </p>
+        </div>
         <p class="justify-self-end text-sm dark:text-white">
           {formattedPeriod({
             startDate: experience.startDate,
@@ -31,9 +40,8 @@ const { work: experiences }: { work: ExperienceType[] } = resume;
           })}
         </p>
       </div>
-      <Separator className="my-6 bg-gradient-to-r from-background via-gray-700/50 to-background" />
+      <Separator className="my-4 bg-gradient-to-r from-background via-gray-700/50 to-background" />
       <p class="text-sm italic dark:text-white">{experience.summary}</p>
-      <a href={`/experiences/${experience.name.toLowerCase()}`}>Read more</a>
     </div>
   ))
 }

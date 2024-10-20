@@ -9,7 +9,7 @@ interface EducationGroupProps {
 
 const EducationGroup: React.FC<EducationGroupProps> = ({ education }) => {
   return (
-    <div className="flex flex-col gap-4 w-full">
+    <div className="flex flex-col w-full">
       <AnimatedBackground
         defaultValue={`education-${education[0].studyType.toLowerCase()}`}
         className=" rounded-[4px] bg-neutral-900 w-full"
