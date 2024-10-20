@@ -18,7 +18,7 @@ const { work: experiences }: { work: ExperienceType[] } = resume;
         <div class="inline-flex items-center">
           <a
             href={`/experiences/${experience.name.toLowerCase()}`}
-            class="p-1 text-background bg-foreground rounded-full mr-4 animate-pulse"
+            class={`p-1 text-background bg-foreground rounded-full duration-1000 mr-4 ${experiences.indexOf(experience) === 0 ? "animate-pulse" : ""}`}
           >
             <PlusIcon className="w-4 h-4" />
           </a>

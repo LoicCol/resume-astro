@@ -7,16 +7,68 @@ interface Props {
 
 const { skills } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+const zenjobSkills = [
+  'AWS',
+  'CSS',
+  'Cypress',
+  'Docker',
+  'HTML',
+  'Java',
+  'JavaScript',
+  'Jenkins',
+  'Kafka',
+  'Kubernetes',
+  'Next.js',
+  'Nock',
+  'Playwright',
+  'PostgreSQL',
+  'React',
+  'React Testing Library',
+  'Spring',
+  'Terraform',
+  'TypeScript'
+]
+
+const elampSkills = [
+  'React',
+  'TypeScript',
+  "Cypress",
+  "React Testing Library",
+  "JavaScript",
+  "GraphQL",
+  "Node.js",
+  "Express",
+  "PostgreSQL",
+  "Docker",
+  "Kubernetes",
+  "AWS",
+  "Docker",
+  "MSW"
+]
+
+const isZenjobSkill = (keyword: string) => {
+  return currentPath.includes('/experiences/zenjob') && zenjobSkills.includes(keyword);
+}
+
+const isElampSkill = (keyword: string) => {
+  return currentPath.includes('/experiences/elamp') && elampSkills.includes(keyword);
+}
 ---
 
   {
     skills.map((skill) => (
       <h2 class="text-md mb-3 font-bold" transition:name={skill.name}>{skill.name}</h2>
       <div class={`mb-6 flex items-center flex-wrap gap-y-3 gap-x-2 ${currentPath !== '/' ? 'justify-end' : ''}`}>
-        {skill.keywords.map((keyword, index) => (
+        {skill.keywords.sort().map((keyword, index, sortedKeywords) => (
           <>
-            <p class="text-sm dark:text-white" transition:name={`${skill.name}-${keyword}`}>{keyword}</p>
-            {index !== skill.keywords.length - 1 && (
+            <p 
+              class={`text-sm dark:text-white transition-colors duration-1000 ${isZenjobSkill(keyword) ? ' text-purple-500' : isElampSkill(keyword) ? 'text-orange-500' : ''}`} 
+              transition:name={`${skill.name}-${keyword}`}
+            >
+              {keyword}
+            </p>
+            {index !== sortedKeywords.length - 1 && (
               <Separator
                 className="h-4 bg-gradient-to-b from-background via-gray-700/50 to-background"
                 orientation="vertical"

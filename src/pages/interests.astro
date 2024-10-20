@@ -1,17 +1,13 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import InterestsComponent from "@/components/Interests.astro";
-import Skills from "@/components/Skills.astro";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import resume from "../assets/resume.json";
 
-const { basics, skills } = resume;
+const { basics, interests } = resume;
 ---
 
 <BaseLayout>
-  <Card
-    className="overflow-hidden max-w-[80vw] max-h-[90vh] rounded-none flex flex-col"
-  >
+  <Card className="overflow-hidden max-w-[80vw] max-h-[90vh] rounded-none flex">
     <CardHeader className="flex flex-col md:flex-row justify-between gap-16">
       <CardTitle className="flex md:flex-col xl:flex-row gap-2">
         <img
@@ -39,10 +35,18 @@ const { basics, skills } = resume;
           </div>
         </div>
       </CardTitle>
-
-      <div class="max-w-[600px]">
-        <InterestsComponent />
-      </div>
     </CardHeader>
+    <CardContent className="pt-4">
+      <div class="max-w-[600px]">
+        <h2 class="mb-4 text-2xl font-bold">Interests</h2>
+        <ul class="mt-5 list-inside list-disc">
+          {
+            interests.map((interest) => (
+              <li class="text-sm dark:text-white ">{interest.name}</li>
+            ))
+          }
+        </ul>
+      </div>
+    </CardContent>
   </Card>
 </BaseLayout>

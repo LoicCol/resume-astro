@@ -111,7 +111,8 @@
         "Playwright",
         "Nock",
         "Vitest",
-        "Astro"
+        "Astro",
+        "MSW"
       ]
     },
     {
