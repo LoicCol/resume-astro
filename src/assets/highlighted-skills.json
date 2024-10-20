@@ -1,0 +1,44 @@
+{
+  "zenjob": {
+    "skills": [
+      "AWS",
+      "CSS",
+      "Cypress",
+      "Docker",
+      "HTML",
+      "Java",
+      "JavaScript",
+      "Jenkins",
+      "Kafka",
+      "Kubernetes",
+      "Next.js",
+      "Nock",
+      "Playwright",
+      "PostgreSQL",
+      "React",
+      "React Testing Library",
+      "Spring",
+      "Terraform",
+      "TypeScript"
+    ],
+    "color": "text-purple-500"
+  },
+  "elamp": {
+    "skills": [
+      "React",
+      "TypeScript",
+      "Cypress",
+      "React Testing Library",
+      "JavaScript",
+      "GraphQL",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "MSW"
+    ],
+    "color": "text-orange-500"
+  }
+}

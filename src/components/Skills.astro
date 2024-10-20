@@ -1,59 +1,37 @@
 ---
 import type { SkillType } from "../types.ts";
 import { Separator } from "@/components/ui/separator";
+import highlightedSkills from "../assets/highlighted-skills.json";
+
 interface Props {
   skills: SkillType[];
 }
 
 const { skills } = Astro.props;
+const { name } = Astro.params;
 const currentPath = Astro.url.pathname;
 
-const zenjobSkills = [
-  'AWS',
-  'CSS',
-  'Cypress',
-  'Docker',
-  'HTML',
-  'Java',
-  'JavaScript',
-  'Jenkins',
-  'Kafka',
-  'Kubernetes',
-  'Next.js',
-  'Nock',
-  'Playwright',
-  'PostgreSQL',
-  'React',
-  'React Testing Library',
-  'Spring',
-  'Terraform',
-  'TypeScript'
-]
+const getHighlightedSkills = () => {
+  if (name && highlightedSkills[name as keyof typeof highlightedSkills]) {
+    return highlightedSkills[name as keyof typeof highlightedSkills]
+  }
+  return { skills: [], color: '' };
+};
 
-const elampSkills = [
-  'React',
-  'TypeScript',
-  "Cypress",
-  "React Testing Library",
-  "JavaScript",
-  "GraphQL",
-  "Node.js",
-  "Express",
-  "PostgreSQL",
-  "Docker",
-  "Kubernetes",
-  "AWS",
-  "Docker",
-  "MSW"
-]
+const highlightedSkillsData = getHighlightedSkills();
 
-const isZenjobSkill = (keyword: string) => {
-  return currentPath.includes('/experiences/zenjob') && zenjobSkills.includes(keyword);
-}
+const isHighlightedSkill = (keyword: string) => {
+  return highlightedSkillsData.skills.includes(keyword);
+};
 
-const isElampSkill = (keyword: string) => {
-  return currentPath.includes('/experiences/elamp') && elampSkills.includes(keyword);
-}
+const getHighlightColor = () => {
+  if (highlightedSkillsData.color) {
+    return highlightedSkillsData.color;
+  }
+  return '';
+};
+
+const highlightColor = getHighlightColor();
 ---
 
   {
@@ -63,7 +41,7 @@ const isElampSkill = (keyword: string) => {
         {skill.keywords.sort().map((keyword, index, sortedKeywords) => (
           <>
             <p 
-              class={`text-sm dark:text-white transition-colors duration-1000 ${isZenjobSkill(keyword) ? ' text-purple-500' : isElampSkill(keyword) ? 'text-orange-500' : ''}`} 
+              class={`text-sm dark:text-white transition-colors duration-1000 ${isHighlightedSkill(keyword) ? highlightColor : ''}`} 
               transition:name={`${skill.name}-${keyword}`}
             >
               {keyword}
