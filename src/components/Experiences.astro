@@ -13,7 +13,7 @@ const { work: experiences }: { work: ExperienceType[] } = resume;
       class="mb-10 border-gray-400 pb-4"
       transition:name={`experience-${experience.name.toLowerCase()}`}
     >
-      <div class=" items-center justify-between pb-2 sm:flex">
+      <div class=" items-center justify-between sm:flex">
         <p class="text-xl">
           {experience.position},
           <a
@@ -31,7 +31,7 @@ const { work: experiences }: { work: ExperienceType[] } = resume;
           })}
         </p>
       </div>
-      <Separator className="my-4 bg-gradient-to-r from-background via-gray-700/50 to-background" />
+      <Separator className="my-6 bg-gradient-to-r from-background via-gray-700/50 to-background" />
       <p class="text-sm italic dark:text-white">{experience.summary}</p>
       <a href={`/experiences/${experience.name.toLowerCase()}`}>Read more</a>
     </div>

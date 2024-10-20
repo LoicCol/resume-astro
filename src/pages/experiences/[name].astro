@@ -9,7 +9,7 @@ export function getStaticPaths() {
   const { work: experiences }: { work: ExperienceType[] } = resume;
 
   return experiences.map((experience) => ({
-    params: { index: experience.name.toLowerCase() },
+    params: { name: experience.name.toLowerCase() },
     props: { experience },
   }));
 }
@@ -22,7 +22,7 @@ const { experience } = Astro.props;
     class="mb-10 border-gray-400"
     transition:name={`experience-${experience.name.toLowerCase()}`}
   >
-    <div class="items-center justify-between pb-2 sm:flex">
+    <div class="items-center justify-between sm:flex">
       <p class="text-xl">
         {experience.position},{" "}
         <a
@@ -43,7 +43,7 @@ const { experience } = Astro.props;
       </p>
     </div>
     <Separator
-      className="my-4 bg-gradient-to-r from-background via-gray-700/50 to-background"
+      className="my-6 bg-gradient-to-r from-background via-gray-800/50 to-background"
     />
     <p class="text-sm italic dark:text-white">{experience.summary}</p>
     <ul class="list-disc pt-6 sm:px-16">

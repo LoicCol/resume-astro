@@ -17,7 +17,7 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
     <title>Astro</title>
     <ViewTransitions />
   </head>
-  <body class="h-screen bg-background cursor-none" transition:name="hero">
+  <body class="h-screen bg-background" transition:name="hero">
     <div
       class="md:flex-row flex flex-col md:justify-center justify-between items-center h-screen"
     >
@@ -30,16 +30,16 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
       </div>
       <Menu isDark={true} toggleDark={() => null} />
     </div>
-    <div
+    <!-- <div
       id="move"
       class="hidden md:block"
       transition:persist
       transition:name="move"
     >
-    </div>
+    </div> -->
   </body>
 </html>
-
+<!-- 
 <script is:inline>
   const move = document.getElementById("move");
 
@@ -73,4 +73,4 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
     pointer-events: none;
     mix-blend-mode: difference;
   }
-</style>
+</style> -->

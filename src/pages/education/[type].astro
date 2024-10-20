@@ -1,0 +1,49 @@
+---
+import type { EducationType } from "@/types.ts";
+import BaseLayoutWithSkills from "@/layouts/BaseLayoutWithSkills.astro";
+import resume from "@/assets/resume.json";
+import { formattedPeriod } from "@/utils/formattedPeriod.ts";
+
+export function getStaticPaths() {
+  const { education }: { education: EducationType[] } = resume;
+
+  return education.map((education) => ({
+    params: { type: education.studyType.toLowerCase() },
+    props: { education },
+  }));
+}
+
+const { education } = Astro.props;
+---
+
+<BaseLayoutWithSkills>
+  <div
+    class="pb-12"
+    transition:name={`education-${education.studyType.toLowerCase()}`}
+  >
+    <div class="items-center justify-between pb-6 sm:flex">
+      <p class="text-xl">
+        {education.studyType},{" "}
+        <a href={education.url} target="_blank" class="text-xl font-semibold">
+          {education.institution}
+        </a>
+      </p>
+      <p class="justify-self-end text-sm dark:text-white">
+        {
+          formattedPeriod({
+            startDate: education.startDate,
+            endDate: education.endDate,
+          })
+        }
+      </p>
+    </div>
+    <p class="text-sm italic dark:text-white">{education.area}</p>
+    <ul class="list-disc pt-8 sm:pl-16">
+      {
+        education.courses.map((course) => (
+          <li class="pt-2 text-sm dark:text-white">{course}</li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayoutWithSkills>
