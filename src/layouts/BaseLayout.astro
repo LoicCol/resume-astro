@@ -22,7 +22,7 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
       class="md:flex-row flex flex-col md:justify-center justify-between items-center h-screen"
     >
       <div
-        class="relative overflow-hidden border border-transparent cursor-auto z-10 bg-background/90"
+        class="relative overflow-hidden border border-transparent cursor-auto z-20 bg-background/90"
         transition:name="card"
       >
         <slot />
@@ -72,5 +72,6 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
     border-radius: 50%;
     pointer-events: none;
     mix-blend-mode: difference;
+    z-index: 10;
   }
 </style>
