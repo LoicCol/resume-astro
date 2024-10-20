@@ -29,17 +29,24 @@ const links = [
       "bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500 via-emerald-900 animate-pulse duration-2000 blur-sm",
   },
 ];
+
+const isActive = (href: string, index: number) => {
+  if (index === 0) {
+    return currentPath === href;
+  }
+  return currentPath.includes(href);
+};
 ---
 
 <nav class="md:flex-col justify-center md:pl-8 flex" transition:name="menu">
   {
-    links.map((link) => (
+    links.map((link, index) => (
       <a
         href={link.href}
         class="mb-8 w-min rounded-full p-2 relative cursor-pointer"
         transition:name={link.href}
       >
-        {currentPath === link.href && (
+        {isActive(link.href, index) && (
           <div
             class="absolute inset-0  border-primary/60 rounded-full "
             transition:name={`active-page`}

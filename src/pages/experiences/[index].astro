@@ -1,0 +1,57 @@
+---
+import type { ExperienceType } from "@/types.ts";
+import { formattedPeriod } from "@/utils/formattedPeriod.ts";
+import resume from "@/assets/resume.json";
+import { Separator } from "@/components/ui/separator.tsx";
+import BaseLayoutWithSkills from "@/layouts/BaseLayoutWithSkills.astro";
+
+export function getStaticPaths() {
+  const { work: experiences }: { work: ExperienceType[] } = resume;
+
+  return experiences.map((experience) => ({
+    params: { index: experience.name.toLowerCase() },
+    props: { experience },
+  }));
+}
+
+const { experience } = Astro.props;
+---
+
+<BaseLayoutWithSkills>
+  <div
+    class="mb-10 border-gray-400"
+    transition:name={`experience-${experience.name.toLowerCase()}`}
+  >
+    <div class="items-center justify-between pb-2 sm:flex">
+      <p class="text-xl">
+        {experience.position},{" "}
+        <a
+          href={experience.url}
+          target="_blank"
+          class="text-xl font-bold underline"
+        >
+          {experience.name}
+        </a>
+      </p>
+      <p class="justify-self-end text-sm dark:text-white">
+        {
+          formattedPeriod({
+            startDate: experience.startDate,
+            endDate: experience.endDate,
+          })
+        }
+      </p>
+    </div>
+    <Separator
+      className="my-4 bg-gradient-to-r from-background via-gray-700/50 to-background"
+    />
+    <p class="text-sm italic dark:text-white">{experience.summary}</p>
+    <ul class="list-disc pt-6 sm:px-16">
+      {
+        experience.highlights.map((highlight) => (
+          <li class="pt-4 text-sm dark:text-white">{highlight}</li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayoutWithSkills>
