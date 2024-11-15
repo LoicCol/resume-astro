@@ -19,7 +19,7 @@ const { basics } = resume;
           transition:name="image"
         />
         <div class="flex flex-col" transition:name="title">
-          <h1 class="text-2xl font-bold mb-2">
+          <h1 class="text-2xl font-bold mb-2" id="name-heading">
             {basics.name}
           </h1>
           <div>
@@ -42,3 +42,28 @@ const { basics } = resume;
     </CardHeader>
   </Card>
 </BaseLayout>
+
+<script is:inline>
+  import "https://cdn.jsdelivr.net/npm/@theatre/browser-bundles@0.5.0-insiders.88df1ef/dist/core-and-studio.js";
+  // We can now access Theatre.core and Theatre.studio from here
+  const { core, studio } = Theatre;
+
+  studio.initialize();
+
+  const project = core.getProject("First animation test");
+  const sheet = project.sheet("Sheet 1");
+  const obj = sheet.object("Heading 1", {
+    y: 0, // you can use just a simple default value
+    x: 0,
+    scale: 0,
+    opacity: core.types.number(1, { range: [0, 1] }), // or use a type constructor to customize
+  });
+
+  const articleHeadingElement = document.getElementById("article-heading");
+
+  obj.onValuesChange((obj) => {
+    articleHeadingElement.style.transform = `translateY(${obj.y}px)`;
+    articleHeadingElement.style.transform = `translateX(${obj.x}px)`;
+    articleHeadingElement.style.opacity = obj.opacity;
+  });
+</script>
