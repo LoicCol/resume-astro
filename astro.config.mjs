@@ -10,6 +10,7 @@ import vercel from "@astrojs/vercel/static";
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: true,
   integrations: [
     react(),
     tailwind({
