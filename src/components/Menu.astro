@@ -1,5 +1,13 @@
 ---
-import { House, BriefcaseBusiness, BookOpenCheck, Heart } from "lucide-react";
+import {
+  House,
+  BriefcaseBusiness,
+  BookOpenCheck,
+  Heart,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
+import { generateAllPaths } from "@/lib/dynamicNavigationUtils";
 
 const currentPath = Astro.url.pathname;
 
@@ -36,6 +44,13 @@ const isActive = (href: string, index: number) => {
   }
   return currentPath.includes(href);
 };
+
+// Navigation buttons logic
+const allPaths = generateAllPaths();
+const currentIndex = allPaths.indexOf(currentPath);
+const prevPath = currentIndex > 0 ? allPaths[currentIndex - 1] : null;
+const nextPath =
+  currentIndex < allPaths.length - 1 ? allPaths[currentIndex + 1] : null;
 ---
 
 <nav class="md:flex-col justify-center md:pl-8 flex" transition:name="menu">
@@ -61,4 +76,30 @@ const isActive = (href: string, index: number) => {
       </a>
     ))
   }
+
+  <!-- Navigation buttons -->
+  <div class="flex flex-col md:mt-8">
+    {
+      prevPath && (
+        <a
+          href={prevPath}
+          class="mb-4 w-min rounded-full p-2 relative cursor-pointer text-primary hover:text-primary/80 transition-colors"
+          title="Previous Page"
+        >
+          <ArrowLeft className="h-5 w-5 relative z-10" strokeWidth={1} />
+        </a>
+      )
+    }
+    {
+      nextPath && (
+        <a
+          href={nextPath}
+          class="w-min rounded-full p-2 relative cursor-pointer text-primary hover:text-primary/80 transition-colors"
+          title="Next Page"
+        >
+          <ArrowRight className="h-5 w-5 relative z-10" strokeWidth={1} />
+        </a>
+      )
+    }
+  </div>
 </nav>

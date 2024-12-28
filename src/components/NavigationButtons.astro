@@ -1,0 +1,37 @@
+---
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { generateAllPaths } from "@/lib/dynamicNavigationUtils";
+
+const allPaths = generateAllPaths();
+const currentPath = Astro.url.pathname;
+const currentIndex = allPaths.indexOf(currentPath);
+
+const prevPath = currentIndex > 0 ? allPaths[currentIndex - 1] : null;
+const nextPath =
+  currentIndex < allPaths.length - 1 ? allPaths[currentIndex + 1] : null;
+---
+
+<div class="flex justify-between mt-8">
+  {
+    prevPath && (
+      <a
+        href={prevPath}
+        class="flex items-center text-primary hover:text-primary/80 transition-colors"
+      >
+        <ArrowLeft className="w-4 h-4 mr-2" />
+        Previous
+      </a>
+    )
+  }
+  {
+    nextPath && (
+      <a
+        href={nextPath}
+        class="flex items-center text-primary hover:text-primary/80 transition-colors ml-auto"
+      >
+        Next
+        <ArrowRight className="w-4 h-4 ml-2" />
+      </a>
+    )
+  }
+</div>
