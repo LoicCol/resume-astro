@@ -1,5 +1,4 @@
 ---
-import Menu from "../components/Menu.astro";
 import "../styles/globals.css";
 import { ClientRouter } from "astro:transitions";
 import { BorderTrail } from "../components/ui/border-trail";
@@ -21,7 +20,7 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
     <title>Astro</title>
     <ClientRouter />
   </head>
-  <body class="h-screen bg-background cursor-none" transition:name="hero">
+  <body class="h-screen bg-background">
     <div
       class="md:flex-row flex flex-col md:justify-center justify-between items-center h-screen"
     >
@@ -35,7 +34,7 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
           <CardHeader
             className="relative flex flex-col md:flex-row justify-between gap-4 border-b"
           >
-            <CardTitle className="flex md:flex-col xl:flex-row gap-2">
+            <CardTitle className="flex  md:flex-row gap-2">
               <img
                 src={basics.picture}
                 alt="profile"
@@ -67,9 +66,7 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
             <slot />
           </CardContent>
         </Card>
-        <BorderTrail size={borderTrailSize} client:load />
       </div>
-      <Menu isDark={true} toggleDark={() => null} />
       <ScrollNavigation />
     </div>
     <div

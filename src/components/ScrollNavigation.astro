@@ -13,7 +13,7 @@
 
 <div
   id="custom-scroll-indicator"
-  class="fixed right-4 top-1/2 transform -translate-y-1/2 w-1 h-32 bg-gray-800 rounded-full overflow-hidden"
+  class="ml-4 w-1 h-64 bg-primary/10 rounded-full overflow-hidden"
   transition:persist
   transition:name="scrollthumb"
 >
@@ -39,7 +39,7 @@
 
   // Set the height of the virtual scroll content
   if (virtualScrollContent) {
-    virtualScrollContent.style.height = `${allPaths.length * 100}vh`;
+    virtualScrollContent.style.height = `${allPaths.length * 200}vh`;
   }
 
   const updateScrollIndicator = () => {
@@ -55,6 +55,18 @@
 
       scrollThumb.style.height = `${thumbHeight}px`;
       scrollThumb.style.transform = `translateY(${thumbPosition}px)`;
+    }
+  };
+
+  const updateScrollPosition = () => {
+    if (virtualScroll) {
+      const newIndex = allPaths.indexOf(window.location.pathname);
+      const scrollPercentage = newIndex / (allPaths.length - 1);
+      const newScrollPosition =
+        scrollPercentage *
+        (virtualScroll.scrollHeight - virtualScroll.clientHeight);
+      virtualScroll.scrollTop = newScrollPosition;
+      updateScrollIndicator();
     }
   };
 

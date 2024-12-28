@@ -61,14 +61,14 @@ const isActive = (href: string) => currentPath === href;
 ---
 
 <nav
-  class="md:flex-col justify-center md:pl-8 flex items-center"
+  class="md:flex-col justify-center md:pl-8 flex items-center h-1/3"
   transition:name="menu"
 >
   {
     links.map((link) => (
       <a
         href={link.href}
-        class={`${link.isSubItem ? "mt-0 p-1" : "mt-4 p-2"} w-min rounded-full  relative cursor-pointer `}
+        class={`${link.isSubItem ? "p-0.5" : "mt-1 p-1"} w-min rounded-full  relative cursor-pointer `}
         transition:name={link.href}
         title={link.href.split("/").pop()}
       >
