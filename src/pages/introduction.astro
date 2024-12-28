@@ -1,0 +1,74 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Basics from "@/components/Basics.astro";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import resume from "../assets/resume.json";
+
+const { basics } = resume;
+---
+
+<BaseLayout>
+  <Card className="overflow-hidden max-h-[80vh] max-w-[80vw] rounded-none">
+    <CardHeader>
+      <CardTitle className="flex flex-row justify-between p-6 text-right">
+        <img
+          src={basics.picture}
+          alt="profile"
+          class="h-24 w-24 rounded-full mr-10"
+          loading="lazy"
+          transition:name="image"
+        />
+        <div class="flex flex-col" transition:name="title">
+          <h1 class="text-2xl font-bold mb-2" id="name-heading">
+            {basics.name}
+          </h1>
+          <div>
+            <p class="text-sm dark:text-white">{basics.label}</p>
+            <p class="text-sm dark:text-white">{basics.email}</p>
+            <p class="text-sm dark:text-white">{basics.location.city}</p>
+            <a
+              href={basics.profiles[0].url}
+              class="w-min pt-2 text-sm"
+              target="_blank"
+            >
+              <!-- GitHub icon can be added here if needed -->
+            </a>
+          </div>
+        </div>
+      </CardTitle>
+      <CardContent className="pt-16 max-w-[800px]">
+        <Basics />
+      </CardContent>
+    </CardHeader>
+  </Card>
+</BaseLayout>
+
+<script>
+  import studio from "@theatre/studio";
+  import { getProject } from "@theatre/core";
+
+  studio.initialize();
+
+  const project = getProject("First animation test");
+  const sheet = project.sheet("Sheet 1");
+  const obj = sheet.object("Heading 1", {
+    y: 0, // you can use just a simple default value
+    x: 0,
+    scale: 1,
+    // opacity: core.types.number(1, { range: [0, 1] }), // or use a type constructor to customize
+  });
+
+  const articleHeadingElement = document.getElementById("name-heading");
+
+  obj.onValuesChange((obj) => {
+    if (!articleHeadingElement) return;
+    articleHeadingElement.style.transform = `translateY(${obj.y}px)`;
+    articleHeadingElement.style.transform = `translateX(${obj.x}px)`;
+    articleHeadingElement.style.transform = `scale(${obj.scale})`;
+    // articleHeadingElement.style.opacity = obj.opacity;
+  });
+
+  project.ready.then(() => {
+    sheet.sequence.play({ range: [0, 4], iterationCount: 2 });
+  });
+</script>

@@ -1,74 +1,44 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Basics from "@/components/Basics.astro";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import resume from "../assets/resume.json";
+import "../styles/globals.css";
 
-const { basics } = resume;
+const topLine = new Array(100).fill(() => null);
 ---
 
-<BaseLayout>
-  <Card className="overflow-hidden max-h-[80vh] max-w-[80vw] rounded-none">
-    <CardHeader>
-      <CardTitle className="flex flex-row justify-between p-6 text-right">
-        <img
-          src={basics.picture}
-          alt="profile"
-          class="h-24 w-24 rounded-full mr-10"
-          loading="lazy"
-          transition:name="image"
-        />
-        <div class="flex flex-col" transition:name="title">
-          <h1 class="text-2xl font-bold mb-2" id="name-heading">
-            {basics.name}
-          </h1>
-          <div>
-            <p class="text-sm dark:text-white">{basics.label}</p>
-            <p class="text-sm dark:text-white">{basics.email}</p>
-            <p class="text-sm dark:text-white">{basics.location.city}</p>
-            <a
-              href={basics.profiles[0].url}
-              class="w-min pt-2 text-sm"
-              target="_blank"
-            >
-              <!-- GitHub icon can be added here if needed -->
-            </a>
-          </div>
-        </div>
-      </CardTitle>
-      <CardContent className="pt-16 max-w-[800px]">
-        <Basics />
-      </CardContent>
-    </CardHeader>
-  </Card>
-</BaseLayout>
+<div class="relative w-[400px] h-1" id="top">
+  {
+    topLine.map((_, index) => (
+      <div
+        id={`top-${index}`}
+        style={{
+          transform: `translateX(${4 * index}px)`,
+        }}
+        class="absolute bg-white w-1 h-1"
+      />
+    ))
+  }
+</div>
 
 <script>
   import studio from "@theatre/studio";
-  import { getProject } from "@theatre/core";
+  import { getProject, types } from "@theatre/core";
 
   studio.initialize();
 
   const project = getProject("First animation test");
   const sheet = project.sheet("Sheet 1");
-  const obj = sheet.object("Heading 1", {
-    y: 0, // you can use just a simple default value
-    x: 0,
-    scale: 1,
-    // opacity: core.types.number(1, { range: [0, 1] }), // or use a type constructor to customize
+  let obj = sheet.object("Top", {
+    x: 500,
+    y: 500,
+    rotation: types.number(0, { range: [0, 1] }),
   });
 
-  const articleHeadingElement = document.getElementById("name-heading");
-
+  const objElement = document.getElementById(`top`);
   obj.onValuesChange((obj) => {
-    if (!articleHeadingElement) return;
-    articleHeadingElement.style.transform = `translateY(${obj.y}px)`;
-    articleHeadingElement.style.transform = `translateX(${obj.x}px)`;
-    articleHeadingElement.style.transform = `scale(${obj.scale})`;
-    // articleHeadingElement.style.opacity = obj.opacity;
+    if (!objElement) return;
+    objElement.style.transform = `translateY(${obj.y}px) translateX(${obj.x}px) rotate(${obj.rotation}turn)`;
   });
 
   project.ready.then(() => {
-    sheet.sequence.play({ range: [0, 4], iterationCount: 2 });
+    sheet.sequence.play({ iterationCount: 1 });
   });
 </script>
