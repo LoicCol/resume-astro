@@ -9,54 +9,54 @@ interface EducationGroupProps {
 
 const EducationGroup: React.FC<EducationGroupProps> = ({ education }) => {
   return (
-    <div className="flex flex-col w-full">
-      <AnimatedBackground
-        defaultValue={`education-${education[0].studyType.toLowerCase()}`}
-        className=" rounded-[4px] bg-neutral-900 w-full"
-        transition={{
-          type: "spring",
-          bounce: 0.2,
-          duration: 0.6,
-        }}
-        enableHover
-      >
-        {education.map((educ, index) => (
-          <div className="relative inline-flex" data-id={`education-${index}`}>
-            <div
-              key={index}
-              className="p-4  gap-2"
+    <div className="flex flex-col rounded-[4px] w-full">
+      {education.map((educ, index) => (
+        <div
+          key={index}
+          className="p-4  gap-2"
+          style={{
+            viewTransitionName: `education-${educ.studyType.toLowerCase()}`,
+          }}
+        >
+          <div className="flex justify-between  gap-2">
+            <p
+              className="text-xl"
               style={{
-                viewTransitionName: `education-${educ.studyType.toLowerCase()}`,
+                viewTransitionName: index === 0 ? "education-title" : "",
               }}
             >
-              <div className="flex justify-between  gap-2">
-                <p className="text-xl">
-                  {educ.studyType},{" "}
-                  <a
-                    href={educ.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xl font-semibold"
-                  >
-                    {educ.institution}
-                  </a>
-                </p>
-                <p className=" text-sm dark:text-white">
-                  {formattedPeriod({
-                    startDate: educ.startDate,
-                    endDate: educ.endDate,
-                  })}
-                </p>
-              </div>
-              <p className="text-sm italic dark:text-white">{educ.area}</p>
-            </div>
-            <a
-              href={`/education/${educ.studyType.toLowerCase()}`}
-              className="absolute inset-0"
-            />
+              {educ.studyType},{" "}
+              <a
+                href={educ.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xl font-semibold"
+              >
+                {educ.institution}
+              </a>
+            </p>
+            <p
+              className=" text-sm dark:text-white"
+              style={{
+                viewTransitionName: index === 0 ? "education-dates" : "",
+              }}
+            >
+              {formattedPeriod({
+                startDate: educ.startDate,
+                endDate: educ.endDate,
+              })}
+            </p>
           </div>
-        ))}
-      </AnimatedBackground>
+          <p
+            className="text-sm italic dark:text-white"
+            style={{
+              viewTransitionName: index === 0 ? "education-area" : "",
+            }}
+          >
+            {educ.area}
+          </p>
+        </div>
+      ))}
     </div>
   );
 };

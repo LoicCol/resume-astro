@@ -9,20 +9,20 @@ const { work: experiences }: { work: ExperienceType[] } = resume;
 
 <h2 class="mb-8 text-2xl font-bold">Experiences</h2>
 {
-  experiences.map((experience) => (
-    <div
-      class="mb-10 border-gray-400 pb-4 flex flex-col"
-      transition:name={`experience-${experience.name.toLowerCase()}`}
-    >
+  experiences.map((experience, index) => (
+    <div class="mb-10 border-gray-400 pb-4 flex flex-col">
       <div class=" items-center justify-between sm:flex">
         <div class="inline-flex items-center">
-          <a
+          {/* <a
             href={`/experiences/${experience.name.toLowerCase()}`}
             class={`p-1 text-background bg-foreground rounded-full duration-1000 mr-4 ${experiences.indexOf(experience) === 0 ? "animate-pulse" : ""}`}
           >
             <PlusIcon className="w-4 h-4" />
-          </a>
-          <p class="text-xl">
+          </a> */}
+          <p
+            class="text-xl"
+            transition:name={index === 0 ? "experience-name" : ""}
+          >
             {experience.position},
             <a
               href={experience.url}
@@ -33,7 +33,10 @@ const { work: experiences }: { work: ExperienceType[] } = resume;
             </a>
           </p>
         </div>
-        <p class="justify-self-end text-sm dark:text-white">
+        <p
+          class="justify-self-end text-sm dark:text-white"
+          transition:name={index === 0 ? "experience-dates" : ""}
+        >
           {formattedPeriod({
             startDate: experience.startDate,
             endDate: experience.endDate,
@@ -41,7 +44,12 @@ const { work: experiences }: { work: ExperienceType[] } = resume;
         </p>
       </div>
       <Separator className="my-4 bg-gradient-to-r from-background via-gray-700/50 to-background" />
-      <p class="text-sm italic dark:text-white">{experience.summary}</p>
+      <p
+        class="text-sm italic dark:text-white"
+        transition:name={index === 0 ? "experience-summary" : ""}
+      >
+        {experience.summary}
+      </p>
     </div>
   ))
 }

@@ -18,26 +18,33 @@ const { education } = Astro.props;
 ---
 
 <BaseLayout>
-  <div
-    class="pb-12"
-    transition:name={`education-${education.studyType.toLowerCase()}`}
-  >
+  <div class="pb-12">
     <div class="items-center justify-between pb-6 sm:flex">
       <div class="inline-flex items-center">
-        <a
+        <!-- <a
           href={`/education`}
           class="p-1 text-background bg-foreground rounded-full mr-4"
         >
           <ArrowLeftIcon className="w-4 h-4" />
-        </a>
-        <p class="text-xl">
+        </a> -->
+        <p
+          class="text-xl"
+          style={{
+            viewTransitionName: `education-title`,
+          }}
+        >
           {education.studyType},{" "}
           <a href={education.url} target="_blank" class="text-xl font-semibold">
             {education.institution}
           </a>
         </p>
       </div>
-      <p class="justify-self-end text-sm dark:text-white">
+      <p
+        class="justify-self-end text-sm dark:text-white"
+        style={{
+          viewTransitionName: `education-dates`,
+        }}
+      >
         {
           formattedPeriod({
             startDate: education.startDate,
@@ -46,7 +53,14 @@ const { education } = Astro.props;
         }
       </p>
     </div>
-    <p class="text-sm italic dark:text-white">{education.area}</p>
+    <p
+      class="text-sm italic dark:text-white"
+      style={{
+        viewTransitionName: `education-area`,
+      }}
+    >
+      {education.area}
+    </p>
     <ul class="list-disc pt-8 sm:pl-16">
       {
         education.courses.map((course) => (

@@ -19,19 +19,16 @@ const { experience } = Astro.props;
 ---
 
 <BaseLayout>
-  <div
-    class="mb-10 border-gray-400"
-    transition:name={`experience-${experience.name.toLowerCase()}`}
-  >
+  <div class="mb-10 border-gray-400">
     <div class="items-center justify-between sm:flex">
       <div class="inline-flex items-center">
-        <a
+        <!-- <a
           href={`/experiences`}
           class="p-1 text-background bg-foreground rounded-full mr-4"
         >
           <MinusIcon className="w-4 h-4" />
-        </a>
-        <p class="text-xl">
+        </a> -->
+        <p class="text-xl" transition:name="experience-name">
           {experience.position},
           <a
             href={experience.url}
@@ -42,7 +39,10 @@ const { experience } = Astro.props;
           </a>
         </p>
       </div>
-      <p class="justify-self-end text-sm dark:text-white">
+      <p
+        class="justify-self-end text-sm dark:text-white"
+        transition:name="experience-dates"
+      >
         {
           formattedPeriod({
             startDate: experience.startDate,
@@ -54,8 +54,13 @@ const { experience } = Astro.props;
     <Separator
       className="my-6 bg-gradient-to-r from-background via-gray-800/50 to-background"
     />
-    <p class="text-sm italic dark:text-white">{experience.summary}</p>
-    <ul class="list-disc pt-6 sm:px-16">
+    <p
+      class="text-sm italic dark:text-white"
+      transition:name="experience-summary"
+    >
+      {experience.summary}
+    </p>
+    <ul class="list-disc pt-6 sm:px-4">
       {
         experience.highlights.map((highlight) => (
           <li class="pt-4 text-sm dark:text-white">{highlight}</li>

@@ -13,7 +13,7 @@
 
 <div
   id="custom-scroll-indicator"
-  class="ml-4 w-1 h-64 bg-primary/10 rounded-full overflow-hidden"
+  class="ml-4 w-0.5 h-64 bg-primary/10 rounded-full overflow-hidden"
   transition:persist
   transition:name="scrollthumb"
 >
@@ -58,18 +58,6 @@
     }
   };
 
-  const updateScrollPosition = () => {
-    if (virtualScroll) {
-      const newIndex = allPaths.indexOf(window.location.pathname);
-      const scrollPercentage = newIndex / (allPaths.length - 1);
-      const newScrollPosition =
-        scrollPercentage *
-        (virtualScroll.scrollHeight - virtualScroll.clientHeight);
-      virtualScroll.scrollTop = newScrollPosition;
-      updateScrollIndicator();
-    }
-  };
-
   const handleScroll = async () => {
     if (isNavigating || !virtualScroll) return;
     isNavigating = true;
@@ -99,13 +87,18 @@
     }
   });
 
-  document.addEventListener("astro:page-load", () => {
-    currentPathIndex = allPaths.indexOf(window.location.pathname);
+  document.addEventListener("astro:after-swap", () => {
     if (virtualScroll) {
-      virtualScroll.scrollTop = lastScrollPosition;
+      virtualScroll.scrollTo({
+        top: lastScrollPosition,
+        behavior: "instant",
+      });
     }
     updateScrollIndicator();
+    currentPathIndex = allPaths.indexOf(window.location.pathname);
   });
+
+  document.addEventListener("astro:page-load", () => {});
 
   // Handle wheel events to control virtual scroll
   const handleWheel = (event: WheelEvent) => {

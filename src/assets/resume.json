@@ -30,9 +30,7 @@
         "Led an initiaitve with 4 engineers to increase automation from 75% to 98% by developing and implementing a fully automated order management system. Resulted in streamlined processing, reduced manual intervention, and resource optimization.",
         "Refactored the B2B application's front-end authentication system by migrating from Redux to React Context for improved robustness and maintainability.",
         "Developed a user-friendly bulk order process that accelerated processing, benefiting customers with large orders and enhancing efficiency, 70% of orders are now created through this UI.",
-        "Designed and implemented a Talent Rating system to manage complex evaluation aspects effectively, ensuring accurate assessments.",
-        "Migrated end-to-end tests from TestCafe & Cypress to Playwright, reducing flaky failures by 30% and speeding up the Jenkins pipeline by 25%. Enhanced testing reliability and efficiency.",
-        "Built an internal panel application using React, replacing a VBA tool and equipping account managers with an intuitive interface for enhanced productivity."
+        "Migrated end-to-end tests from TestCafe & Cypress to Playwright, reducing flaky failures by 30% and speeding up the Jenkins pipeline by 25%. Enhanced testing reliability and efficiency."
       ]
     },
     {
