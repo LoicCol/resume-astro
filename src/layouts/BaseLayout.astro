@@ -5,6 +5,7 @@ import { ClientRouter } from "astro:transitions";
 import { BorderTrail } from "../components/ui/border-trail";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import resume from "../assets/resume.json";
+import ScrollNavigation from "@/components/ScrollNavigation.astro";
 
 const { basics } = resume;
 const currentPath = Astro.url.pathname;
@@ -69,6 +70,7 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
         <BorderTrail size={borderTrailSize} client:load />
       </div>
       <Menu isDark={true} toggleDark={() => null} />
+      <ScrollNavigation client:defer />
     </div>
     <div
       id="move"
@@ -81,11 +83,6 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
 </html>
 
 <script>
-  import { generateAllPaths } from "@/lib/dynamicNavigationUtils";
-  import { navigate } from "astro:transitions/client";
-  import { prefetch } from "astro:prefetch";
-  import type { WheelEvent } from "react";
-
   const move = document.getElementById("move");
 
   document.addEventListener("astro:page-load", () => {
@@ -101,60 +98,6 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
       );
     };
   });
-
-  const allPaths = generateAllPaths();
-
-  let currentPathIndex = allPaths.indexOf(window.location.pathname);
-  let isNavigating = false;
-
-  const preloadNextAndPrevious = (index: number) => {
-    if (index > 0) {
-      prefetch(allPaths[index - 1]);
-    }
-    if (index < allPaths.length - 1) {
-      prefetch(allPaths[index + 1]);
-    }
-  };
-
-  // Preload initial adjacent pages
-  preloadNextAndPrevious(currentPathIndex);
-
-  const handleWheel = async (event: any) => {
-    if (isNavigating) return;
-    isNavigating = true;
-
-    // Determine direction: 1 for down, -1 for up
-    const direction = event.deltaY > 0 ? 1 : -1;
-
-    // Update the current path index
-    const newIndex = Math.max(
-      0,
-      Math.min(currentPathIndex + direction, allPaths.length - 1),
-    );
-    const newPath = allPaths[newIndex];
-
-    if (newPath !== window.location.pathname) {
-      console.log("Navigating to:", newPath);
-
-      // Preload the next path
-      await prefetch(newPath);
-
-      // Navigate to the new path
-      await navigate(newPath);
-
-      // Update current index and preload adjacent pages
-      currentPathIndex = newIndex;
-      preloadNextAndPrevious(currentPathIndex);
-    }
-
-    // Reset the navigation flag after a short delay
-    setTimeout(() => {
-      isNavigating = false;
-    }, 1000); // Adjust this delay as needed
-  };
-
-  // Use the 'wheel' event instead of 'scroll'
-  window.addEventListener("wheel", handleWheel, { passive: false });
 </script>
 
 <style is:global>

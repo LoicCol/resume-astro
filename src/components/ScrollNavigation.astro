@@ -1,0 +1,134 @@
+---
+
+---
+
+<div
+  id="virtual-scroll"
+  class="fixed top-0 left-0 w-full h-full overflow-y-scroll pointer-events-none"
+  transition:persist
+  transition:name="scrollbar"
+>
+  <div id="virtual-scroll-content"></div>
+</div>
+
+<div
+  id="custom-scroll-indicator"
+  class="fixed right-4 top-1/2 transform -translate-y-1/2 w-1 h-32 bg-gray-800 rounded-full overflow-hidden"
+  transition:persist
+  transition:name="scrollthumb"
+>
+  <div id="scroll-thumb" class="w-full bg-primary rounded-full"></div>
+</div>
+
+<script>
+  import { generateAllPaths } from "@/lib/dynamicNavigationUtils";
+  import { navigate } from "astro:transitions/client";
+  import { prefetch } from "astro:prefetch";
+
+  const allPaths = generateAllPaths();
+  let currentPathIndex = allPaths.indexOf(window.location.pathname);
+  let isNavigating = false;
+  let lastScrollPosition = 0;
+
+  const virtualScroll = document.getElementById("virtual-scroll");
+  const virtualScrollContent = document.getElementById(
+    "virtual-scroll-content",
+  );
+  const scrollIndicator = document.getElementById("custom-scroll-indicator");
+  const scrollThumb = document.getElementById("scroll-thumb");
+
+  // Set the height of the virtual scroll content
+  if (virtualScrollContent) {
+    virtualScrollContent.style.height = `${allPaths.length * 100}vh`;
+  }
+
+  const updateScrollIndicator = () => {
+    if (virtualScroll && scrollThumb) {
+      const scrollPercentage =
+        virtualScroll.scrollTop /
+        (virtualScroll.scrollHeight - virtualScroll.clientHeight);
+      const thumbHeight =
+        scrollIndicator!.clientHeight *
+        (virtualScroll.clientHeight / virtualScroll.scrollHeight);
+      const thumbPosition =
+        scrollPercentage * (scrollIndicator!.clientHeight - thumbHeight);
+
+      scrollThumb.style.height = `${thumbHeight}px`;
+      scrollThumb.style.transform = `translateY(${thumbPosition}px)`;
+    }
+  };
+
+  const handleScroll = async () => {
+    if (isNavigating || !virtualScroll) return;
+    isNavigating = true;
+
+    updateScrollIndicator();
+
+    const scrollPercentage =
+      virtualScroll.scrollTop /
+      (virtualScroll.scrollHeight - virtualScroll.clientHeight);
+    const newIndex = Math.round(scrollPercentage * (allPaths.length - 1));
+
+    if (newIndex !== currentPathIndex) {
+      const newPath = allPaths[newIndex];
+      await Promise.all([prefetch(newPath), navigate(newPath)]);
+      currentPathIndex = newIndex;
+    }
+
+    isNavigating = false;
+  };
+
+  virtualScroll?.addEventListener("scroll", handleScroll, { passive: true });
+
+  // Update currentPathIndex and restore scroll position on page load
+  document.addEventListener("astro:before-swap", () => {
+    if (virtualScroll) {
+      lastScrollPosition = virtualScroll.scrollTop;
+    }
+  });
+
+  document.addEventListener("astro:page-load", () => {
+    currentPathIndex = allPaths.indexOf(window.location.pathname);
+    if (virtualScroll) {
+      virtualScroll.scrollTop = lastScrollPosition;
+    }
+    updateScrollIndicator();
+  });
+
+  // Handle wheel events to control virtual scroll
+  const handleWheel = (event: WheelEvent) => {
+    event.preventDefault();
+    if (virtualScroll) {
+      virtualScroll.scrollTop += event.deltaY;
+    }
+  };
+
+  window.addEventListener("wheel", handleWheel, { passive: false });
+
+  // Initial update of scroll indicator
+  updateScrollIndicator();
+</script>
+
+<style>
+  #virtual-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  #virtual-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  #custom-scroll-indicator {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  #custom-scroll-indicator:hover {
+    opacity: 1;
+  }
+
+  #scroll-thumb {
+    transition: transform 0.1s ease;
+  }
+</style>
