@@ -15,7 +15,6 @@ export function BorderTrail({
   className,
   size = 60,
   transition,
-  delay,
   onAnimationComplete,
   style,
 }: BorderTrailProps) {
