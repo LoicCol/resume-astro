@@ -8,37 +8,5 @@ const { basics } = resume;
 ---
 
 <BaseLayout>
-  <Card className="overflow-hidden max-h-[80vh] max-w-[80vw] rounded-none">
-    <CardHeader>
-      <CardTitle className="flex flex-row justify-between p-6 text-right">
-        <img
-          src={basics.picture}
-          alt="profile"
-          class="h-24 w-24 rounded-full mr-10"
-          loading="lazy"
-          transition:name="image"
-        />
-        <div class="flex flex-col" transition:name="title">
-          <h1 class="text-2xl font-bold mb-2">
-            {basics.name}
-          </h1>
-          <div>
-            <p class="text-sm dark:text-white">{basics.label}</p>
-            <p class="text-sm dark:text-white">{basics.email}</p>
-            <p class="text-sm dark:text-white">{basics.location.city}</p>
-            <a
-              href={basics.profiles[0].url}
-              class="w-min pt-2 text-sm"
-              target="_blank"
-            >
-              <!-- GitHub icon can be added here if needed -->
-            </a>
-          </div>
-        </div>
-      </CardTitle>
-      <CardContent className="pt-16 max-w-[800px]">
-        <Basics />
-      </CardContent>
-    </CardHeader>
-  </Card>
+  <Basics />
 </BaseLayout>

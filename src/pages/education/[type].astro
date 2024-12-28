@@ -1,9 +1,9 @@
 ---
 import type { EducationType } from "@/types.ts";
-import BaseLayoutWithSkills from "@/layouts/BaseLayoutWithSkills.astro";
 import resume from "@/assets/resume.json";
 import { formattedPeriod } from "@/utils/formattedPeriod.ts";
 import { ArrowLeftIcon } from "lucide-react";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
 export function getStaticPaths() {
   const { education }: { education: EducationType[] } = resume;
@@ -17,7 +17,7 @@ export function getStaticPaths() {
 const { education } = Astro.props;
 ---
 
-<BaseLayoutWithSkills>
+<BaseLayout>
   <div
     class="pb-12"
     transition:name={`education-${education.studyType.toLowerCase()}`}
@@ -55,4 +55,4 @@ const { education } = Astro.props;
       }
     </ul>
   </div>
-</BaseLayoutWithSkills>
+</BaseLayout>

@@ -7,46 +7,14 @@ const { basics, interests } = resume;
 ---
 
 <BaseLayout>
-  <Card className="overflow-hidden max-w-[80vw] max-h-[90vh] rounded-none flex">
-    <CardHeader className="flex flex-col md:flex-row justify-between gap-16">
-      <CardTitle className="flex md:flex-col xl:flex-row gap-2">
-        <img
-          src={basics.picture}
-          alt="profile"
-          class="rounded-full mr-10 h-24 w-24"
-          loading="lazy"
-          transition:name="image"
-        />
-        <div class="flex flex-col" transition:name="title">
-          <h1 class="text-2xl font-bold text-primary mb-4">
-            {basics.name}
-          </h1>
-          <div>
-            <p class="text-sm dark:text-white">{basics.label}</p>
-            <p class="text-sm dark:text-white">{basics.email}</p>
-            <p class="text-sm dark:text-white">{basics.location.city}</p>
-            <a
-              href={basics.profiles[0].url}
-              class="w-min pt-2 text-sm"
-              target="_blank"
-            >
-              <!-- GitHub icon can be added here if needed -->
-            </a>
-          </div>
-        </div>
-      </CardTitle>
-    </CardHeader>
-    <CardContent className="pt-4">
-      <div class="max-w-[600px]">
-        <h2 class="mb-4 text-2xl font-bold">Interests</h2>
-        <ul class="mt-5 list-inside list-disc">
-          {
-            interests.map((interest) => (
-              <li class="text-sm dark:text-white ">{interest.name}</li>
-            ))
-          }
-        </ul>
-      </div>
-    </CardContent>
-  </Card>
+  <div class="max-w-[600px]">
+    <h2 class="mb-4 text-2xl font-bold">Interests</h2>
+    <ul class="mt-5 list-inside list-disc">
+      {
+        interests.map((interest) => (
+          <li class="text-sm dark:text-white ">{interest.name}</li>
+        ))
+      }
+    </ul>
+  </div>
 </BaseLayout>

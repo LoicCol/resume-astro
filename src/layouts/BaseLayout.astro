@@ -1,9 +1,12 @@
 ---
 import Menu from "../components/Menu.astro";
 import "../styles/globals.css";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { BorderTrail } from "../components/ui/border-trail";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import resume from "../assets/resume.json";
 
+const { basics } = resume;
 const currentPath = Astro.url.pathname;
 const borderTrailSize = currentPath === "/interests" ? 200 : 500;
 ---
@@ -15,7 +18,7 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body class="h-screen bg-background cursor-none" transition:name="hero">
     <div
@@ -25,7 +28,44 @@ const borderTrailSize = currentPath === "/interests" ? 200 : 500;
         class="relative overflow-hidden border border-transparent cursor-auto z-20 bg-background/90"
         transition:name="card"
       >
-        <slot />
+        <Card
+          className="overflow-hidden max-w-[95vw] md:w-[60vw] max-h-[90vh] rounded-none flex flex-col"
+        >
+          <CardHeader
+            className="relative flex flex-col md:flex-row justify-between gap-4 border-b"
+          >
+            <CardTitle className="flex md:flex-col xl:flex-row gap-2">
+              <img
+                src={basics.picture}
+                alt="profile"
+                class="rounded-full mr-10 h-24 w-24"
+                loading="lazy"
+                transition:name="image"
+              />
+              <div class="flex flex-col" transition:name="title">
+                <h1 class="text-2xl font-bold text-primary mb-4">
+                  {basics.name}
+                </h1>
+                <div>
+                  <p class="text-sm dark:text-white">{basics.label}</p>
+                  <p class="text-sm dark:text-white">{basics.email}</p>
+                  <p class="text-sm dark:text-white">{basics.location.city}</p>
+                  <a
+                    href={basics.profiles[0].url}
+                    class="w-min pt-2 text-sm"
+                    target="_blank"
+                  >
+                    <!-- GitHub icon can be added here if needed -->
+                  </a>
+                </div>
+              </div>
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent className="overflow-auto pt-8">
+            <slot />
+          </CardContent>
+        </Card>
         <BorderTrail size={borderTrailSize} client:load />
       </div>
       <Menu isDark={true} toggleDark={() => null} />

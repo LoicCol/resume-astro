@@ -1,12 +1,12 @@
 ---
-import BaseLayoutWithSkills from "@/layouts/BaseLayoutWithSkills.astro";
 import resume from "../assets/resume.json";
 import type { EducationType } from "../types.ts";
 import EducationGroup from "@/components/EducationGroup";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 const { education }: { education: EducationType[] } = resume;
 ---
 
-<BaseLayoutWithSkills>
+<BaseLayout>
   <h2 class="pb-4 pl-4 text-2xl font-bold">Education</h2>
   <EducationGroup education={education} client:only="react" />
-</BaseLayoutWithSkills>
+</BaseLayout>
